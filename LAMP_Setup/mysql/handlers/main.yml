@@ -1,0 +1,7 @@
+---
+# handlers file for mysql
+- name: Restart Mariadb
+  service:
+    name: mysql
+    state: restarted
+    enabled: true

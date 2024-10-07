@@ -1,0 +1,7 @@
+---
+- name: Run script on the Remote Server
+  hosts: webservers
+
+  tasks:
+    - name: Execute the script
+      shell: bash /home/ubuntu/test.sh

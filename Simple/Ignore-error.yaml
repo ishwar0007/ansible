@@ -1,0 +1,12 @@
+---
+- name: Kill the process on the Remote Server
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Kill the Process
+      ignore_errors: yes  # It will ignore the error if occurs
+      shell: "pgrep nginx | xargs kill"
+      
+    - name: Echo
+      shell: "echo 'Hunter'"

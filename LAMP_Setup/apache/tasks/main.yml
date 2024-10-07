@@ -1,0 +1,13 @@
+---
+# tasks file for hunter
+- name: Installing Apache
+  apt:      
+    name: apache2
+    state: present   
+  notify:   Restart Apache 
+
+- name: Copy files
+  copy:
+    src: index.html
+    dest: /var/www/html
+

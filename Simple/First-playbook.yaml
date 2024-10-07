@@ -1,0 +1,10 @@
+---
+- name: 'First PlayBook'
+  hosts: webservers
+
+  tasks:
+  - name: Connectivity 
+    ping:
+  
+  - name: "Print Output"
+    debug: msg="Correct!!!"

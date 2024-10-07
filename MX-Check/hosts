@@ -1,0 +1,11 @@
+[webservers]
+143.122.250.217 ansible_ssh_private_key_file=~/.ssh/id_rsa
+165.122.180.95 ansible_ssh_private_key_file=~/.ssh/id_rsa
+143.122.123.182 ansible_ssh_private_key_file=~/.ssh/id_rsa
+143.122.242.91 ansible_ssh_private_key_file=~/.ssh/id_rsa
+143.122.250.69 ansible_ssh_private_key_file=~/.ssh/id_rsa
+143.122.252.11 ansible_ssh_private_key_file=~/.ssh/id_rsa
+143.122.240.95 ansible_ssh_private_key_file=~/.ssh/id_rsa
+143.122.185.60 ansible_ssh_private_key_file=~/.ssh/id_rsa
+165.122.220.22 ansible_ssh_private_key_file=~/.ssh/id_rsa
+143.122.252.26 ansible_ssh_private_key_file=~/.ssh/id_rsa

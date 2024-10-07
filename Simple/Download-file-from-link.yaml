@@ -1,0 +1,14 @@
+---
+- name: Download files from URL
+  hosts: webservers
+  become: yes
+
+  tasks:
+  - name: Download file
+    get_url:
+      url: https://abc.com/app.zip
+      dest: /root/
+      owner: ubuntu
+      group: ubuntu
+      mode: 0777
+      

@@ -1,0 +1,12 @@
+---
+# handlers file for php
+- name: Installing PHP
+  service:
+    name: "{{ item }}"
+    state: restarted
+    enabled: true
+  loop:
+    - php7.4-fpm
+    - php8.1-fpm
+    - php8.2-fpm
+    

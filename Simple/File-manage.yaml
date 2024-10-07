@@ -1,0 +1,36 @@
+---
+- name: Manage File
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Creating a file
+      file: 
+        path: /home/ubuntu/new_file.txt
+        state: touch
+        owner: ubuntu
+        group: ubuntu
+        mode: 0644
+
+    - name: Creating a Directory
+      file:
+        path: /home/ubuntu/new_dir
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: 0755
+    
+    - name: Deleting a file
+      file: 
+        path: /home/ubuntu/test.txt
+        state: absent
+
+    - name: Deleting a Directory
+      file: 
+        path: /home/ubuntu/new_dir
+        state: absent
+
+    - name: Setting permission on a file or folder
+      file:
+        path: /home/ubuntu/Web.zip
+        mode: 0777

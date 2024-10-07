@@ -1,0 +1,8 @@
+---
+- name: Setup LAMP Environment
+  hosts: webservers
+  become: yes
+  roles:
+    - apache
+    - mysql
+    - php

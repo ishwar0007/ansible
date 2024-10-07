@@ -1,0 +1,12 @@
+---
+# tasks file for php
+- name: Enable Repo for PHP installation
+  shell: |
+    apt install software-properties-common curl gnupg2 wget -y
+    add-apt-repository ppa:ondrej/php -y
+    apt update
+- name: Installing PHP
+  apt:
+    name: ["php7.4", "php7.4-fpm", "php8.1", "php8.1-fpm", "php8.2", "php8.2-fpm"]
+    state: present
+  notify: Installing PHP

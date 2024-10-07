@@ -1,0 +1,35 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install the python3
+      apt: name=python3,python3-pip update_cache=yes state=latest
+
+    - name: Installing the Python modules
+      shell:
+         "pip3 install pandas dnspython"
+      register: output
+      tags: output
+
+    - debug: msg="{{output.stdout}}"
+
+    - name: Copy script files to all the servers
+      copy:
+        src: ./{{ item }}
+        dest: /root/
+        mode: 0777
+      with_items:
+       - mx_check_script.py
+
+    - name: Create a screen session
+      shell:
+         "screen -S 'run_script' -d -m"
+      register: output
+      tags: output
+
+    - name: Run the script in the screen session
+      shell:
+         "screen -r 'run_script' -X stuff 'python3 /root/python.py \n'"
+      register: output
+      tags: output
+

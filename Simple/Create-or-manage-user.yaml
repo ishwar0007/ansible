@@ -1,0 +1,19 @@
+---
+- name: Create and Manage Users in Linux
+  hosts: webservers
+  become: yes
+
+  tasks:
+  - name: Create user
+    user:
+      name: hunter
+      update_password: always
+      password: "{{'Hello@123' | password_hash('sha512')}}"
+      home: /home/hunter    # If you want to assign a custom home directory other you do neet to mention the home.
+      shell: /bin/bash
+
+  - name: Delete User
+    user:
+      name: hunter
+      state: absent
+      remove: yes   # It will remove the home directory

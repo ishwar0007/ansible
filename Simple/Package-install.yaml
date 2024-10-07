@@ -1,0 +1,16 @@
+---
+- name: "Install and start webserver"
+  hosts: webservers
+  become: true  # for sudo privileges
+
+  tasks:
+    - name: Installing Nginx
+      apt:      # Using module to install any package
+        name: nginx
+        state: present   # Ensure the packages is installed
+
+    - name: Starting and enabling the Nginx service
+      service:        # Using service module to manage service.
+        name: nginx
+        state: restarted
+        enabled: true

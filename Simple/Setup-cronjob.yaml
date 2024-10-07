@@ -1,0 +1,23 @@
+---
+- name: Setup cronjob with ansible
+  hosts: web-server-1
+  become: true
+
+  tasks:
+    - name: Configure cron
+      cron:
+        name: Run test script
+        minute: "*/2"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        user: www-data
+        job: bash /home/ubuntu/test.sh
+
+  tasks:
+    - name: Remove cron
+      cron:
+        name: "Run test script"  # To remove the cron the name must match with the name, which is used at the time of creation.
+        state: absent
+        user: www-data

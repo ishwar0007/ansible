@@ -1,0 +1,34 @@
+---
+- name: Copying files in Ansible
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Local to all the Remote Servers
+      copy:
+        src: Web.zip
+        dest: /home/ubuntu/
+        owner: ubuntu
+        group: ubuntu
+        mode: 0644
+
+- name: Specific Remote server to Local
+  hosts: localhost                # Run this task on the local machine
+  tasks:
+    - fetch:
+        src: /home/ubuntu/web-server-2.zip
+        dest: /Users/hunter/Desktop/Ansible/
+        flat: yes
+      delegate_to: web-server-2    # Specify the remote server to copy from
+
+- name: Local to specific Remote server
+  hosts: localhost                
+  tasks:
+    - copy:
+        src: new.txt
+        dest: /home/ubuntu/
+        owner: ubuntu
+        group: ubuntu
+        mode: 0644
+        backup: true    # It will create backup of file, if it detect any changes
+      delegate_to: web-server-4    # Specify the remote server to copy to

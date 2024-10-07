@@ -1,0 +1,21 @@
+---
+# tasks file for mysql
+- name: Install MySQL
+  apt: 
+    name: ["mariadb-server", "python3-pymysql "]
+    state: present
+  notify: Restart Mariadb
+
+- name: Create database
+  mysql_db:
+    name: ansible_db
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: Create database user
+  mysql_user:
+    name: ansible_usr
+    password: "{{'Hello@123' | password_hash('sha512')}}"
+    priv: 'ansible_db.*:ALL'
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
